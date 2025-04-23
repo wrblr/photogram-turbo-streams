@@ -22,12 +22,13 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_back fallback_location: root_path, notice: "Comment was successfully created." }
-        format.json { render :show, status: :created, location: @comment }
-        format.js
+        #format.html { redirect_back fallback_location: root_path, notice: "Comment was successfully created." }
+        #format.json { render :show, status: :created, location: @comment }
+        format.turbo_stream
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        #format.html { render :new, status: :unprocessable_entity }
+        #format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end
@@ -51,8 +52,8 @@ class CommentsController < ApplicationController
     @comment.destroy
     respond_to do |format|
       format.html { redirect_back fallback_location: root_url, notice: "Comment was successfully destroyed." }
-      format.json { head :no_content }
-      format.js
+      #format.json { head :no_content }
+      format.turbo_stream
     end
   end
 
